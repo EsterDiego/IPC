@@ -8,6 +8,7 @@ package microondas;
 /**
  *
  * @author adrdelp
+ * @author Ester Diego
  */
 public class Microondas extends javax.swing.JFrame {
 
@@ -278,6 +279,16 @@ public class Microondas extends javax.swing.JFrame {
         jTextField1.setText(String.valueOf(Integer.parseInt(jTextField1.getText())*10+0));
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
+        limpiar();
+        jTextField1.setText("Fin");
+        int i = Integer.parseInt(jTextField1.getText());
+        while(i>0){
+            jTextField1.setText(String.valueOf(i-1));
+            i--;
+        }
+        jTextField1.setText("Fin");
+    } 
     
     public void limpiar(){
         if("Aquí el tiempo.".equals(jTextField1.getText())){
