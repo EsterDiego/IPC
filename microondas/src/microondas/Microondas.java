@@ -122,8 +122,18 @@ public class Microondas extends javax.swing.JFrame {
         });
 
         jButton12.setText("Start");
+	jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Stop");
+	jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -281,14 +291,22 @@ public class Microondas extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
         limpiar();
-        jTextField1.setText("Fin");
         int i = Integer.parseInt(jTextField1.getText());
-        while(i>0){
+        do{
+            try {
+                Thread.sleep (1000);
+            } catch (Exception e) {
+            // Mensaje en caso de que falle
+            }
             jTextField1.setText(String.valueOf(i-1));
             i--;
-        }
+        }while(i>0);
         jTextField1.setText("Fin");
-    } 
+    }
+    
+     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+       
+    }  
     
     public void limpiar(){
         if("Aquí el tiempo.".equals(jTextField1.getText())){
