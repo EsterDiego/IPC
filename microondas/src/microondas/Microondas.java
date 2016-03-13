@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package microondas;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer; 
 /**
  *
  * @author adrdelp
@@ -290,28 +292,24 @@ public class Microondas extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
-        limpiar();
-        int i = Integer.parseInt(jTextField1.getText());
-        do{
-            try {
-                Thread.sleep (1000);
-            } catch (Exception e) {
-            // Mensaje en caso de que falle
-            }
-            jTextField1.setText(String.valueOf(i-1));
-            i--;
-        }while(i>0);
-        jTextField1.setText("Fin");
+        timer.start();
     }
     
      private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+       if(timer.isRunning()){
+           timer.stop();
+       }else{
+           jTextField1.setText("0");
+       }
        
     }  
     
     public void limpiar(){
-        if("Aquí el tiempo.".equals(jTextField1.getText())){
-        
-    jTextField1.setText(String.valueOf(0));
+        try{
+            int i=Integer.parseInt(jTextField1.getText());
+            jTextField1.setText(String.valueOf(i));
+        }catch (Exception e){
+            jTextField1.setText(String.valueOf(0));
         }
     }
 
@@ -342,7 +340,6 @@ public class Microondas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Microondas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -350,6 +347,21 @@ public class Microondas extends javax.swing.JFrame {
             }
         });
     }
+    Timer  timer=new Timer(1000,new ActionListener(){
+         public void actionPerformed(ActionEvent e){
+            limpiar();
+            int i = Integer.parseInt(jTextField1.getText());
+            if(i>1){
+                jTextField1.setText(String.valueOf(i-1));
+                i--;
+                }else{
+                if(i==1){
+                    jTextField1.setText("Fin");
+                    timer.stop();
+                }
+            }
+            }
+            });
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
