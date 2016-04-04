@@ -30,28 +30,32 @@ public class ControladorCP {
     }
     
     public void establecerBrillo(){
-        
+        brillo = vista.getBrillo();
     }
     public void establecerContraste(){
-        
+        contraste = vista.getContraste();
     }
     public void establecerGiro(){
-        
+        giro = vista.getGiro();
     }
     public void establecerColor(){
-        
+        color = vista.getColor();
     }
     public void establecerResolucion(){
-        
+        resolucion = vista.getResolucion();
     }
     public void aplicar(){
-        
+        actualizarModelo();
+        vista.actualizar();
     }
     public void aceptar(){
+        actualizarModelo();
+        vista.actualizar();
+        //cerrar ventana
         
     }
     public void cancelar(){
-        
+        //cerrar ventana
     }
     
     public void actualizarModelo(){

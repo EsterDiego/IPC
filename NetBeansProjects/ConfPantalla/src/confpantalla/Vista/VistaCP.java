@@ -39,9 +39,9 @@ public class VistaCP extends javax.swing.JFrame {
         giroHorInvert = new javax.swing.JRadioButton();
         giroVertInvert = new javax.swing.JRadioButton();
         jPanelResolucion = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxResolucion = new javax.swing.JComboBox();
         jPanelColores = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox();
+        jComboBoxColores = new javax.swing.JComboBox();
         etiqResolucion = new javax.swing.JLabel();
         etiqColores = new javax.swing.JLabel();
         etiqGiro = new javax.swing.JLabel();
@@ -139,8 +139,8 @@ public class VistaCP extends javax.swing.JFrame {
 
         jPanelResolucion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jComboBox1.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1152x768", "1024x768", "896x600", "800x600" }));
+        jComboBoxResolucion.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jComboBoxResolucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1152x768", "1024x768", "896x600", "800x600" }));
 
         javax.swing.GroupLayout jPanelResolucionLayout = new javax.swing.GroupLayout(jPanelResolucion);
         jPanelResolucion.setLayout(jPanelResolucionLayout);
@@ -148,21 +148,21 @@ public class VistaCP extends javax.swing.JFrame {
             jPanelResolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelResolucionLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
         jPanelResolucionLayout.setVerticalGroup(
             jPanelResolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelResolucionLayout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
         jPanelColores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jComboBox2.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CMYK", "RGB", "HSB" }));
+        jComboBoxColores.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jComboBoxColores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CMYK", "RGB", "HSB" }));
 
         javax.swing.GroupLayout jPanelColoresLayout = new javax.swing.GroupLayout(jPanelColores);
         jPanelColores.setLayout(jPanelColoresLayout);
@@ -170,14 +170,14 @@ public class VistaCP extends javax.swing.JFrame {
             jPanelColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelColoresLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelColoresLayout.setVerticalGroup(
             jPanelColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelColoresLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -286,6 +286,37 @@ public class VistaCP extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonAplicarActionPerformed
 
+    public void actualizar(){
+        
+    }
+    public int getBrillo(){
+        return jSliderBrillo.getValue();
+    }
+    public int getContraste(){
+        return jSliderContraste.getValue();
+    }
+    public int getGiro(){
+        int g = 0;
+        if(giroHor.isSelected()){
+            g = 0;
+        }
+        if(giroHorInvert.isSelected()){
+            g = 180;
+        }
+        if(giroVert.isSelected()){
+            g = 90;
+        }
+        if(giroVertInvert.isSelected()){
+            g = 270;
+        }
+        return g;
+    }
+    public String getColor(){
+        return String.valueOf(jComboBoxColores.getSelectedItem());
+    }
+    public String getResolucion(){
+        return String.valueOf(jComboBoxResolucion.getSelectedItem());
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,8 +331,8 @@ public class VistaCP extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAceptar;
     private javax.swing.JButton jButtonAplicar;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBoxColores;
+    private javax.swing.JComboBox jComboBoxResolucion;
     private javax.swing.JLabel jLabelBrillo;
     private javax.swing.JLabel jLabelContraste;
     private javax.swing.JPanel jPanelBrilloContr;
