@@ -29,6 +29,10 @@ public class VistaCP extends javax.swing.JFrame {
 
         buttonGroup = new javax.swing.ButtonGroup();
         jPanelBrilloContr = new javax.swing.JPanel();
+        jSliderBrillo = new javax.swing.JSlider();
+        jSliderContraste = new javax.swing.JSlider();
+        jLabelBrillo = new javax.swing.JLabel();
+        jLabelContraste = new javax.swing.JLabel();
         jPanelGiro = new javax.swing.JPanel();
         giroHor = new javax.swing.JRadioButton();
         giroVert = new javax.swing.JRadioButton();
@@ -41,20 +45,50 @@ public class VistaCP extends javax.swing.JFrame {
         etiqResolucion = new javax.swing.JLabel();
         etiqColores = new javax.swing.JLabel();
         etiqGiro = new javax.swing.JLabel();
+        jButtonAplicar = new javax.swing.JButton();
+        jButtonAceptar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanelBrilloContr.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabelBrillo.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jLabelBrillo.setText("Brillo");
+
+        jLabelContraste.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jLabelContraste.setText("Contraste");
+
         javax.swing.GroupLayout jPanelBrilloContrLayout = new javax.swing.GroupLayout(jPanelBrilloContr);
         jPanelBrilloContr.setLayout(jPanelBrilloContrLayout);
         jPanelBrilloContrLayout.setHorizontalGroup(
             jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 141, Short.MAX_VALUE)
+            .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBrilloContrLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
+                        .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelBrillo)
+                            .addComponent(jLabelContraste))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelBrilloContrLayout.setVerticalGroup(
             jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 126, Short.MAX_VALUE)
+            .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabelBrillo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jLabelContraste)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanelGiro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -105,14 +139,15 @@ public class VistaCP extends javax.swing.JFrame {
 
         jPanelResolucion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1152x768", "1024x768", "896x600", "800x600" }));
 
         javax.swing.GroupLayout jPanelResolucionLayout = new javax.swing.GroupLayout(jPanelResolucion);
         jPanelResolucion.setLayout(jPanelResolucionLayout);
         jPanelResolucionLayout.setHorizontalGroup(
             jPanelResolucionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelResolucionLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -126,7 +161,8 @@ public class VistaCP extends javax.swing.JFrame {
 
         jPanelColores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CMYK", "RGB", "HSB" }));
 
         javax.swing.GroupLayout jPanelColoresLayout = new javax.swing.GroupLayout(jPanelColores);
         jPanelColores.setLayout(jPanelColoresLayout);
@@ -135,7 +171,7 @@ public class VistaCP extends javax.swing.JFrame {
             .addGroup(jPanelColoresLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelColoresLayout.setVerticalGroup(
             jPanelColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,29 +187,60 @@ public class VistaCP extends javax.swing.JFrame {
 
         etiqGiro.setText("Giro");
 
+        jButtonAplicar.setText("Aplicar");
+        jButtonAplicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAplicarActionPerformed(evt);
+            }
+        });
+
+        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiqResolucion))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiqColores)
-                            .addComponent(jPanelColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addGap(50, 50, 50)
                         .addComponent(jPanelBrilloContr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etiqGiro)
-                            .addComponent(jPanelGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                            .addComponent(jPanelGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etiqResolucion))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiqColores)
+                                    .addComponent(jPanelColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonAceptar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonCancelar)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonAplicar)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +259,12 @@ public class VistaCP extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelColores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonAplicar))
+                .addContainerGap())
         );
 
         pack();
@@ -201,6 +273,18 @@ public class VistaCP extends javax.swing.JFrame {
     private void giroVertInvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giroVertInvertActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_giroVertInvertActionPerformed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAplicarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAplicarActionPerformed
 
    
 
@@ -213,11 +297,18 @@ public class VistaCP extends javax.swing.JFrame {
     private javax.swing.JRadioButton giroHorInvert;
     private javax.swing.JRadioButton giroVert;
     private javax.swing.JRadioButton giroVertInvert;
+    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonAplicar;
+    private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabelBrillo;
+    private javax.swing.JLabel jLabelContraste;
     private javax.swing.JPanel jPanelBrilloContr;
     private javax.swing.JPanel jPanelColores;
     private javax.swing.JPanel jPanelGiro;
     private javax.swing.JPanel jPanelResolucion;
+    private javax.swing.JSlider jSliderBrillo;
+    private javax.swing.JSlider jSliderContraste;
     // End of variables declaration//GEN-END:variables
 }
