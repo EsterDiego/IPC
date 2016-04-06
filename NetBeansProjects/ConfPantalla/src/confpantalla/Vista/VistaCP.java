@@ -140,7 +140,7 @@ public class VistaCP extends javax.swing.JFrame {
         jPanelResolucion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jComboBoxResolucion.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        jComboBoxResolucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1152x768", "1024x768", "896x600", "800x600" }));
+        jComboBoxResolucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "R1152x768", "R1024x768", "R896x600", "R800x600" }));
 
         javax.swing.GroupLayout jPanelResolucionLayout = new javax.swing.GroupLayout(jPanelResolucion);
         jPanelResolucion.setLayout(jPanelResolucionLayout);

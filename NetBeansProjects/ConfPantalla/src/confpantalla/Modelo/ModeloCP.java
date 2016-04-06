@@ -5,21 +5,28 @@
  */
 package confpantalla.Modelo;
 
+
+
 /**
  *
  * @author electra
  */
+
 public class ModeloCP {
+    
+    private enum ColorSoportado{RGB};
+    private enum ResolucionSoportada{R1024X768,R800x600};
+    
+    
     
     private int brillo;
     private int contraste;
     private int giro;
-    
-    /*No todas las opciones para color y resolucion estaran soportadas
-    *color solo soporta una opcion asi que lo defino aqui, mientras que las 
-    *opciones para resolucion las dare en el controlador*/
-    private final String color = "RGB";
+    private String color;
     private String resolucion;
+    private ColorSoportado colorS;
+    private ResolucionSoportada resolS;
+
     
     public ModeloCP(){
     }
@@ -40,6 +47,13 @@ public class ModeloCP {
     public String getResolucion(){
         return resolucion;
     }
+    public ResolucionSoportada getResPremitida(){
+        return resolS;
+    }
+    public ColorSoportado getColorPermitido(){
+        return colorS;
+    }
+    
     
     
     public void setBrillo(int b){
