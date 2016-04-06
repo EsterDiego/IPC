@@ -13,8 +13,8 @@ import confpantalla.Modelo.ModeloCP;
  */
 public class ControladorCP {
     
-    private VistaCP vista = new VistaCP();
-    private ModeloCP modelo = new ModeloCP();
+    private VistaCP vista;
+    private ModeloCP modelo;
     
     /*los valores del modelo solo se actualizan cuando se pulsa aplicar o aceptar*/
     private int brillo;
@@ -76,13 +76,10 @@ public class ControladorCP {
     }
     
     public void errorResolucion(){
-        //vista.mostrarErrorResol();        
+        vista.mostrarErrorResol();        
     }
     public void errorColor(){
-        //vista.mostrarErrorColor();
-    }
-    public void errorGiro(){
-        //vista.mostrarErrorGiro();
+        vista.mostrarErrorColor();
     }
     
 }
