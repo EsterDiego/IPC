@@ -16,6 +16,7 @@ public class ControladorCP {
     private VistaCP vista;
     private ModeloCP modelo;
     
+
     /*los valores del modelo solo se actualizan cuando se pulsa aplicar o aceptar*/
     private int brillo;
     private int contraste;
@@ -62,12 +63,12 @@ public class ControladorCP {
         modelo.setBrillo(brillo);
         modelo.setContraste(contraste);
         modelo.setGiro(giro);
-        if(modelo.esResPermitida()){
+        if(modelo.esResPermitida(resolucion)){
             modelo.setResolucion(resolucion);
         }else{
             errorResolucion();
         }
-        if(modelo.esColorPermitido()){
+        if(modelo.esColorPermitido(color)){
             modelo.setColor(color);
         }else{
             errorColor();
@@ -76,10 +77,10 @@ public class ControladorCP {
     }
     
     public void errorResolucion(){
-        vista.mostrarErrorResol();        
+        //vista.mostrarErrorResol();        
     }
     public void errorColor(){
-        vista.mostrarErrorColor();
+        //vista.mostrarErrorColor();
     }
     
 }

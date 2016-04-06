@@ -14,6 +14,8 @@ package confpantalla.Modelo;
 
 public class ModeloCP {
     
+    private static final String RGB = "RGB";
+    
     private enum Color{CMYK,RGB,HSB};
     private enum Resolucion{R1152x768,R1024x768,R896x600,R800x600};
     
@@ -47,23 +49,23 @@ public class ModeloCP {
     public String getResolucion(){
         return resolucion;
     }
-    public boolean esResPermitida(){
-        switch(resolS){
-            case R1024x768:
-                return true;
-            case R800x600:
-                return true;
-            default:
-                return false;
+    public boolean esResPermitida(String res){
+        
+        if((res=="R1024x768")||(res=="R800x600")){
+            return true;
+        }else{
+            return false;
         }
+       
     }
-    public boolean esColorPermitido(){
-        switch(colorS){
-            case RGB:
-                return true;
-            default:
-                return false;
+    public boolean esColorPermitido(String col){
+        
+        if(col=="RGB"){
+        return true;
+        }else{
+            return false;
         }
+        
     }
     
     
