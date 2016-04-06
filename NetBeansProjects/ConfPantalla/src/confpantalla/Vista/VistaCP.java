@@ -23,8 +23,7 @@ public class VistaCP extends javax.swing.JFrame {
         modelo = new ModeloCP();
         control = new ControladorCP(this,modelo);
         initComponents();
-        jLabelErrorColor.setVisible(false);
-        jLabelErrorResolucion.setVisible(false);
+        ocultarErrores();
     }
 
     /**
@@ -362,6 +361,10 @@ public class VistaCP extends javax.swing.JFrame {
     }
     public void mostrarErrorResol(){
         jLabelErrorResolucion.setVisible(true);
+    }
+    public void ocultarErrores(){
+        jLabelErrorColor.setVisible(false);
+        jLabelErrorResolucion.setVisible(false);
     }
    
 

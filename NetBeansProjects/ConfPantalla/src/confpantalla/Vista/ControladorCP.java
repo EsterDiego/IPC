@@ -46,10 +46,12 @@ public class ControladorCP {
         resolucion = vista.getResolucion();
     }
     public void aplicar(){
+        vista.ocultarErrores();
         actualizarModelo();
         vista.actualizar();
     }
     public void aceptar(){
+        vista.ocultarErrores();
         actualizarModelo();
         vista.actualizar();
         System.exit(0);
