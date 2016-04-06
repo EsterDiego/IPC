@@ -68,8 +68,6 @@ public class ModeloCP {
         
     }
     
-    
-    
     public void setBrillo(int b){
         brillo = b;
     }
@@ -79,8 +77,8 @@ public class ModeloCP {
     public void setGiro(int g){
         giro = g;
     }
-    public void setColor(String color){
-        
+    public void setColor(String c){
+        color = c;
     }
     public void setResolucion(String r){
         resolucion = r;

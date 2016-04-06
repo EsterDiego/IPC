@@ -60,27 +60,38 @@ public class ControladorCP {
     }
     
     public void actualizarModelo(){
+        establecerBrillo();
         modelo.setBrillo(brillo);
+        establecerContraste();
         modelo.setContraste(contraste);
+        establecerGiro();
         modelo.setGiro(giro);
+        establecerResolucion();
         if(modelo.esResPermitida(resolucion)){
             modelo.setResolucion(resolucion);
         }else{
-            errorResolucion();
+            modelo.setResolucion("");
+            error("Resolucion");
         }
+        establecerColor();
         if(modelo.esColorPermitido(color)){
             modelo.setColor(color);
         }else{
-            errorColor();
+             modelo.setColor("");
+            error("Color");
         }
         
     }
     
-    public void errorResolucion(){
-        //vista.mostrarErrorResol();        
+    public void error(String e){
+        if(e=="Resolucion"){
+            vista.mostrarErrorResol();        
+        }
+        if(e=="Color"){
+            vista.mostrarErrorColor();
+        }
+        
     }
-    public void errorColor(){
-        //vista.mostrarErrorColor();
-    }
+    
     
 }
