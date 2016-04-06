@@ -5,17 +5,23 @@
  */
 package confpantalla.Vista;
 
+import confpantalla.Modelo.ModeloCP;
+
 /**
  *
  * @author electra
  */
 public class VistaCP extends javax.swing.JFrame {
 
+    ControladorCP control;
+    ModeloCP modelo;
     /**
      * Creates new form VistaCP
      */
     public VistaCP() {
         initComponents();
+        modelo = new ModeloCP();
+        control = new ControladorCP(this,modelo);
     }
 
     /**
@@ -27,7 +33,7 @@ public class VistaCP extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanelBrilloContr = new javax.swing.JPanel();
         jSliderBrillo = new javax.swing.JSlider();
         jSliderContraste = new javax.swing.JSlider();
@@ -93,15 +99,20 @@ public class VistaCP extends javax.swing.JFrame {
 
         jPanelGiro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        buttonGroup1.add(giroHor);
         giroHor.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
+        giroHor.setSelected(true);
         giroHor.setText("Horizontal (0º)");
 
+        buttonGroup1.add(giroVert);
         giroVert.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         giroVert.setText("Vertical (90º)");
 
+        buttonGroup1.add(giroHorInvert);
         giroHorInvert.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         giroHorInvert.setText("Horizontal invertido(180º)");
 
+        buttonGroup1.add(giroVertInvert);
         giroVertInvert.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         giroVertInvert.setText("Vertical invertido (270º)");
         giroVertInvert.addActionListener(new java.awt.event.ActionListener() {
@@ -275,20 +286,25 @@ public class VistaCP extends javax.swing.JFrame {
     }//GEN-LAST:event_giroVertInvertActionPerformed
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
-        // TODO add your handling code here:
+        control.aceptar();
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
-        // TODO add your handling code here:
+        control.cancelar();
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAplicarActionPerformed
-        // TODO add your handling code here:
+        control.aplicar();
     }//GEN-LAST:event_jButtonAplicarActionPerformed
 
     public void actualizar(){
-        
+        jSliderBrillo.setValue(modelo.getBrillo());
+        jSliderContraste.setValue(modelo.getContraste());
+        jComboBoxColores.setSelectedItem(modelo.getColor());
+        jComboBoxResolucion.setSelectedItem(modelo.getResolucion());
     }
+    
+    
     public int getBrillo(){
         return jSliderBrillo.getValue();
     }
@@ -297,6 +313,7 @@ public class VistaCP extends javax.swing.JFrame {
     }
     public int getGiro(){
         int g = 0;
+        
         if(giroHor.isSelected()){
             g = 0;
         }
@@ -320,7 +337,7 @@ public class VistaCP extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel etiqColores;
     private javax.swing.JLabel etiqGiro;
     private javax.swing.JLabel etiqResolucion;

@@ -14,8 +14,8 @@ package confpantalla.Modelo;
 
 public class ModeloCP {
     
-    private enum ColorSoportado{RGB};
-    private enum ResolucionSoportada{R1024X768,R800x600};
+    private enum Color{CMYK,RGB,HSB};
+    private enum Resolucion{R1152x768,R1024x768,R896x600,R800x600};
     
     
     
@@ -24,8 +24,8 @@ public class ModeloCP {
     private int giro;
     private String color;
     private String resolucion;
-    private ColorSoportado colorS;
-    private ResolucionSoportada resolS;
+    private Color colorS;
+    private Resolucion resolS;
 
     
     public ModeloCP(){
@@ -47,11 +47,23 @@ public class ModeloCP {
     public String getResolucion(){
         return resolucion;
     }
-    public ResolucionSoportada getResPremitida(){
-        return resolS;
+    public boolean esResPermitida(){
+        switch(resolS){
+            case R1024x768:
+                return true;
+            case R800x600:
+                return true;
+            default:
+                return false;
+        }
     }
-    public ColorSoportado getColorPermitido(){
-        return colorS;
+    public boolean esColorPermitido(){
+        switch(colorS){
+            case RGB:
+                return true;
+            default:
+                return false;
+        }
     }
     
     

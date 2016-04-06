@@ -51,33 +51,38 @@ public class ControladorCP {
     public void aceptar(){
         actualizarModelo();
         vista.actualizar();
-        //cerrar ventana
+        System.exit(0);
         
     }
     public void cancelar(){
-        //cerrar ventana
+        System.exit(0);
     }
     
     public void actualizarModelo(){
         modelo.setBrillo(brillo);
         modelo.setContraste(contraste);
         modelo.setGiro(giro);
-        if((resolucion=="1024x768")||(resolucion=="800x600")){
+        if(modelo.esResPermitida()){
             modelo.setResolucion(resolucion);
         }else{
             errorResolucion();
         }
-        if(color!="RGB"){
+        if(modelo.esColorPermitido()){
+            modelo.setColor(color);
+        }else{
             errorColor();
         }
         
     }
     
     public void errorResolucion(){
-        
+        //vista.mostrarErrorResol();        
     }
     public void errorColor(){
-        
+        //vista.mostrarErrorColor();
+    }
+    public void errorGiro(){
+        //vista.mostrarErrorGiro();
     }
     
 }
