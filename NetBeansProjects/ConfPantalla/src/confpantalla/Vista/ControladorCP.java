@@ -1,6 +1,7 @@
-/*
+/**
  * @author Ester Diego
  * @author Adrian Del Prado
+ * Grupo 10
  */
 package confpantalla.Vista;
 

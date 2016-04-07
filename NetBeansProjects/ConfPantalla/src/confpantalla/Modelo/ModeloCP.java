@@ -1,6 +1,7 @@
-/*
+/**
  * @author Ester Diego
  * @author Adrian Del Prado
+ * GRupo 10
  */
 package confpantalla.Modelo;
 
