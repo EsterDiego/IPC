@@ -12,25 +12,25 @@ package confpantalla.Modelo;
  */
 
 public class ModeloCP {
-    
-    private enum Color{CMYK,RGB,HSB};
-    private enum Resolucion{R1152x768,R1024x768,R896x600,R800x600};
-    
-    
-    
+
     private int brillo;
     private int contraste;
     private int giro;
     private int brilloPro;
     private int contrastePro;
-    private String color;
+    private int color;
+    private int colorPro;
     private String resolucion;
-    private Color colorS;
-    private Resolucion resolS;
+    private String resolucionPro;
     private boolean cambiado;
 
     
     public ModeloCP(){
+        brillo=50;
+        contraste=50;
+        giro=0;
+        color=32;
+        resolucion="1024x768";
     }
     
     
@@ -49,11 +49,18 @@ public class ModeloCP {
     public int getGiro(){
         return giro;
     }
-    public String getColor(){
+    public int getColor(){
         return color;
     }
+    public int getColorPro(){
+        return colorPro;
+    }
+    
     public String getResolucion(){
         return resolucion;
+    }
+    public String getResolucionPro(){
+        return resolucionPro;
     }
     public int getBrilloPro(){
         return brilloPro;
@@ -64,35 +71,7 @@ public class ModeloCP {
     public boolean getCambiado(){
         return cambiado;
     }
-    
-    
-    /**
-     * @author Ester Diego
-     * @author Adrian Del Prado
-     * 
-     * Comprueban si las opciones estan soportadas
-     * 
-     */
-    public boolean esResPermitida(String res){
-        
-        if((res=="R1024x768")||(res=="R800x600")){
-            return true;
-        }else{
-            return false;
-        }
-       
-    }
-    public boolean esColorPermitido(String col){
-        
-        if(col=="RGB"){
-        return true;
-        }else{
-            return false;
-        }
-        
-    }
-    
-    
+   
     /**
      * @author Ester Diego
      * @author Adrian Del Prado
@@ -107,11 +86,17 @@ public class ModeloCP {
     public void setGiro(int g){
         giro = g;
     }
-    public void setColor(String c){
+    public void setColor(int c){
         color = c;
+    }
+    public void setColorPro(int c){
+        colorPro = c;
     }
     public void setResolucion(String r){
         resolucion = r;
+    }
+    public void setResolucionPro(String r){
+        resolucionPro = r;
     }
     public void setBrilloPro(int b){
         brilloPro= b;

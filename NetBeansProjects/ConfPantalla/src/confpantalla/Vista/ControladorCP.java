@@ -20,7 +20,7 @@ public class ControladorCP {
     private int brillo;
     private int contraste;
     private int giro;
-    private String color;
+    private int color;
     private String resolucion;
     
     
@@ -59,12 +59,11 @@ public class ControladorCP {
      * Funcionalidad de los botones
      */
     public void aplicar(){
-        vista.ocultarErrores();
         actualizarModelo();
+        modelo.setCambiado(false);
         vista.actualizar();
     }
     public void aceptar(){
-        vista.ocultarErrores();
         actualizarModelo();
         vista.actualizar();
         System.exit(0);
@@ -90,19 +89,9 @@ public class ControladorCP {
         establecerGiro();
         modelo.setGiro(giro);
         establecerResolucion();
-        if(modelo.esResPermitida(resolucion)){
-            modelo.setResolucion(resolucion);
-        }else{
-            modelo.setResolucion("");
-            error("Resolucion");
-        }
+        modelo.setResolucion(resolucion);
         establecerColor();
-        if(modelo.esColorPermitido(color)){
-            modelo.setColor(color);
-        }else{
-             modelo.setColor("");
-            error("Color");
-        }
+        modelo.setColor(color);
         
     }
     
@@ -112,27 +101,45 @@ public class ControladorCP {
         modelo.setBrilloPro(brillo);
         establecerContraste();
         modelo.setContrPro(contraste);
+        establecerResolucion();
+        modelo.setResolucionPro(resolucion);
+        establecerColor();
+        modelo.setColorPro(color);
         modelo.setCambiado(true);
         vista.actualizar();
         
     }
-    
-    
-    
-    /**
-     * @author Ester Diego
-     * @author Adrian Del Prado 
-     * Clasifica el error seguna fecte a la seleccion de color o resolucion
-     */
-    public void error(String e){
-        if(e=="Resolucion"){
-            vista.mostrarErrorResol();        
+    //Elimina las resoluciones y los colores de la lista que no son compatibles,para que el usuario no pueda
+    //seleccionar una configuración que no soporta su pantalla.
+    public void verCompatibles(){
+        for(int i=0;i<vista.getResComboTam();i++){
+            if (esResNoPermitida(vista.getResCombo(i))){
+                vista.quitaElementoResCombo(i);
+                i--;
+            }
         }
-        if(e=="Color"){
-            vista.mostrarErrorColor();
+        for(int j=0;j<vista.getColComboTam();j++){
+            if (esColorNoPermitido(vista.getColCombo(j))){
+                System.out.println("Entr");
+                vista.quitaElementoColCombo(j);
+                j--;
+            }
         }
+   
+    }
+    //Funciones similuadas que comprobarían que resoluciones y colores son permitidas por la pantalla
+    public boolean esResNoPermitida(String res){ 
+        if((res=="1024x768")||(res=="800x600")){
+            return false;
+        }else{
+            return true;
+        }
+       
+    }
+    public boolean esColorNoPermitido(int col){
+        return false;
         
     }
-    
+
     
 }

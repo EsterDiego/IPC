@@ -6,6 +6,11 @@
 package confpantalla.Vista;
 
 import confpantalla.Modelo.ModeloCP;
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -24,10 +29,10 @@ public class VistaCP extends javax.swing.JFrame {
         modelo = new ModeloCP();
         control = new ControladorCP(this,modelo);
         initComponents();
-        ocultarErrores();
+        control.verCompatibles();
+        jLabelBrilloPro.setText(String.valueOf(modelo.getBrillo())+"%");
+        jLabelContrPro.setText(String.valueOf(modelo.getContraste())+"%");
         jButtonAplicar.setEnabled(false);
-        jLabelBrilloPro.setVisible(false);
-        jLabelContrPro.setVisible(false);
     }
 
     /**
@@ -62,14 +67,16 @@ public class VistaCP extends javax.swing.JFrame {
         jButtonAplicar = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
-        jLabelErrorColor = new javax.swing.JLabel();
-        jLabelErrorResolucion = new javax.swing.JLabel();
         jLabelNotificacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanelImagen = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Opciones de pantalla");
 
         jPanelBrilloContr.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jSliderBrillo.setPaintTicks(true);
         jSliderBrillo.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderBrilloStateChanged(evt);
@@ -98,40 +105,37 @@ public class VistaCP extends javax.swing.JFrame {
             jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBrilloContrLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
+                        .addComponent(jLabelContraste)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSliderContraste, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
                     .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
                         .addComponent(jLabelBrillo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelBrilloPro))
-                    .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
-                            .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
-                            .addComponent(jLabelContraste)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelContrPro))))
+                        .addGap(30, 30, 30)
+                        .addComponent(jSliderBrillo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelContrPro, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelBrilloPro, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanelBrilloContrLayout.setVerticalGroup(
             jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelBrillo)
-                    .addComponent(jLabelBrilloPro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelContraste)
-                    .addComponent(jLabelContrPro))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelBrillo)
+                        .addComponent(jLabelBrilloPro))
+                    .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelContraste)
+                        .addComponent(jLabelContrPro))
+                    .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanelGiro.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -140,6 +144,11 @@ public class VistaCP extends javax.swing.JFrame {
         giroHor.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         giroHor.setSelected(true);
         giroHor.setText("Horizontal (0º)");
+        giroHor.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                giroHorStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(giroVert);
         giroVert.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
@@ -188,7 +197,17 @@ public class VistaCP extends javax.swing.JFrame {
         jPanelResolucion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jComboBoxResolucion.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        jComboBoxResolucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "R1152x768", "R1024x768", "R896x600", "R800x600" }));
+        jComboBoxResolucion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1920x1080", "1152x768", "1024x768", "896x600", "800x600" }));
+        jComboBoxResolucion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxResolucionItemStateChanged(evt);
+            }
+        });
+        jComboBoxResolucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxResolucionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelResolucionLayout = new javax.swing.GroupLayout(jPanelResolucion);
         jPanelResolucion.setLayout(jPanelResolucionLayout);
@@ -210,7 +229,12 @@ public class VistaCP extends javax.swing.JFrame {
         jPanelColores.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jComboBoxColores.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
-        jComboBoxColores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "CMYK", "RGB", "HSB" }));
+        jComboBoxColores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "16", "32" }));
+        jComboBoxColores.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxColoresItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelColoresLayout = new javax.swing.GroupLayout(jPanelColores);
         jPanelColores.setLayout(jPanelColoresLayout);
@@ -219,14 +243,14 @@ public class VistaCP extends javax.swing.JFrame {
             .addGroup(jPanelColoresLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jComboBoxColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanelColoresLayout.setVerticalGroup(
             jPanelColoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelColoresLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jComboBoxColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         etiqResolucion.setText("Resolución");
@@ -256,11 +280,18 @@ public class VistaCP extends javax.swing.JFrame {
             }
         });
 
-        jLabelErrorColor.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelErrorColor.setText("Color no soportado");
+        jLabel1.setText("Opciones de pantalla:");
 
-        jLabelErrorResolucion.setForeground(new java.awt.Color(255, 0, 0));
-        jLabelErrorResolucion.setText("Resolucion no soportada");
+        javax.swing.GroupLayout jPanelImagenLayout = new javax.swing.GroupLayout(jPanelImagen);
+        jPanelImagen.setLayout(jPanelImagenLayout);
+        jPanelImagenLayout.setHorizontalGroup(
+            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanelImagenLayout.setVerticalGroup(
+            jPanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,73 +299,68 @@ public class VistaCP extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButtonCancelar)
+                                .addGap(36, 36, 36)
+                                .addComponent(jButtonAplicar))
+                            .addComponent(jLabelNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(jPanelBrilloContr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(jPanelBrilloContr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(etiqGiro)
-                            .addComponent(jPanelGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etiqResolucion))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etiqColores)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanelColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelErrorColor)
-                                    .addComponent(jLabelErrorResolucion))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAceptar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonCancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonAplicar)
-                .addGap(36, 36, 36))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jLabelNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etiqResolucion))
+                                .addGap(82, 82, 82)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiqColores)
+                                    .addComponent(jPanelColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanelGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 29, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelBrilloContr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etiqGiro)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelGiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelBrilloContr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelGiro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabelErrorColor)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelErrorResolucion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etiqColores)
-                            .addComponent(etiqResolucion))
+                        .addComponent(etiqColores)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jPanelColores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelResolucion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                        .addComponent(jPanelColores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(etiqResolucion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanelResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39)
                 .addComponent(jLabelNotificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCancelar)
                     .addComponent(jButtonAceptar)
                     .addComponent(jButtonAplicar))
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
 
         pack();
@@ -364,25 +390,40 @@ public class VistaCP extends javax.swing.JFrame {
         control.actualizarTR();
     }//GEN-LAST:event_jSliderContrasteStateChanged
 
+    private void jComboBoxResolucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxResolucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxResolucionActionPerformed
+
+    private void giroHorStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_giroHorStateChanged
+        control.actualizarTR();
+    }//GEN-LAST:event_giroHorStateChanged
+
+    private void jComboBoxResolucionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxResolucionItemStateChanged
+        control.actualizarTR();
+    }//GEN-LAST:event_jComboBoxResolucionItemStateChanged
+
+    private void jComboBoxColoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxColoresItemStateChanged
+        control.actualizarTR();
+    }//GEN-LAST:event_jComboBoxColoresItemStateChanged
+
     /**
      * @author Ester Diego
      * @author Adrian Del Prado
      * Actualiza la vista con los nuevos valores del modelo al pulsar Aplicar o Aceptar
      */
     public void actualizar(){
-        jSliderBrillo.setValue(modelo.getBrillo());
-        jSliderContraste.setValue(modelo.getContraste());
-        jComboBoxColores.setSelectedItem(modelo.getColor());
-        jComboBoxResolucion.setSelectedItem(modelo.getResolucion());
+        jSliderBrillo.setValue(modelo.getBrilloPro());
+        jSliderContraste.setValue(modelo.getContrPro());
+        jComboBoxColores.setSelectedItem(modelo.getColorPro());
         jLabelNotificacion.setText("Valores actuales: Brillo:"+modelo.getBrillo()+
-                " Contraste:"+modelo.getContraste()+" Giro:"+modelo.getGiro()+
-                " Resolucion:"+modelo.getResolucion()+" Color:"+modelo.getColor());
-        jLabelContrPro.setText(String.valueOf(modelo.getContrPro()));
-        jLabelBrilloPro.setText(String.valueOf(modelo.getBrilloPro()));
+                " Contraste:"+modelo.getContraste()+"\n Giro:"+modelo.getGiro()+
+                " Resolucion:"+modelo.getResolucion()+" Color:"+modelo.getColor()+" bits");
+        jLabelContrPro.setText(String.valueOf(modelo.getContrPro())+"%");
+        jLabelBrilloPro.setText(String.valueOf(modelo.getBrilloPro())+"%");
         if(modelo.getCambiado()){
             jButtonAplicar.setEnabled(true);
-            jLabelBrilloPro.setVisible(true);
-            jLabelContrPro.setVisible(true);
+        }else{
+            jButtonAplicar.setEnabled(false);
         }
         
         
@@ -417,29 +458,33 @@ public class VistaCP extends javax.swing.JFrame {
         }
         return g;
     }
-    public String getColor(){
-        return String.valueOf(jComboBoxColores.getSelectedItem());
+    public int getColor(){
+        return Integer.valueOf(String.valueOf(jComboBoxColores.getSelectedItem()));
     }
     public String getResolucion(){
         return String.valueOf(jComboBoxResolucion.getSelectedItem());
     }
+    public String getResCombo(int index){
+        return jComboBoxResolucion.getItemAt(index).toString();
+    }
+    public int getResComboTam(){
+        return jComboBoxResolucion.getItemCount();
+    }
+    public int getColCombo(int index){
+        return Integer.valueOf(jComboBoxColores.getItemAt(index).toString());
+    }
+    public int getColComboTam(){
+        return jComboBoxColores.getItemCount();
+    }
     
-    /**
-     * @author Ester Diego
-     * @author Adrian Del Prado
-     * Tratamiento de los errores. Muestran un error si alguna delas propiedades7
-     * escogidas no esta soportada y los ocultan cuando se corrige la seleccion
-     */
-    public void mostrarErrorColor(){
-        jLabelErrorColor.setVisible(true);
+    //Modifica quitando elementos incompatibles de colores y resoluciones
+    public void quitaElementoResCombo(int index){
+        jComboBoxResolucion.removeItemAt(index);
     }
-    public void mostrarErrorResol(){
-        jLabelErrorResolucion.setVisible(true);
+    public void quitaElementoColCombo(int index){
+        jComboBoxColores.removeItemAt(index);
     }
-    public void ocultarErrores(){
-        jLabelErrorColor.setVisible(false);
-        jLabelErrorResolucion.setVisible(false);
-    }
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,16 +501,16 @@ public class VistaCP extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JComboBox jComboBoxColores;
     private javax.swing.JComboBox jComboBoxResolucion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelBrillo;
     private javax.swing.JLabel jLabelBrilloPro;
     private javax.swing.JLabel jLabelContrPro;
     private javax.swing.JLabel jLabelContraste;
-    private javax.swing.JLabel jLabelErrorColor;
-    private javax.swing.JLabel jLabelErrorResolucion;
     private javax.swing.JLabel jLabelNotificacion;
     private javax.swing.JPanel jPanelBrilloContr;
     private javax.swing.JPanel jPanelColores;
     private javax.swing.JPanel jPanelGiro;
+    private javax.swing.JPanel jPanelImagen;
     private javax.swing.JPanel jPanelResolucion;
     private javax.swing.JSlider jSliderBrillo;
     private javax.swing.JSlider jSliderContraste;
