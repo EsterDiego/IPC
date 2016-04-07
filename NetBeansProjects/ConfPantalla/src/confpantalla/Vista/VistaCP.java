@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Entrega IPC. Ventana de configuracion de pantalla
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 package confpantalla.Vista;
 
@@ -9,15 +9,16 @@ import confpantalla.Modelo.ModeloCP;
 
 /**
  *
- * @author electra
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 public class VistaCP extends javax.swing.JFrame {
 
     ControladorCP control;
     ModeloCP modelo;
-    /**
-     * Creates new form VistaCP
-     */
+    
+    
+    
     public VistaCP() {
         
         modelo = new ModeloCP();
@@ -324,6 +325,11 @@ public class VistaCP extends javax.swing.JFrame {
         control.aplicar();
     }//GEN-LAST:event_jButtonAplicarActionPerformed
 
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * Actualiza la vista con los nuevos valores del modelo al pulsar Aplicar o Aceptar
+     */
     public void actualizar(){
         jSliderBrillo.setValue(modelo.getBrillo());
         jSliderContraste.setValue(modelo.getContraste());
@@ -332,9 +338,15 @@ public class VistaCP extends javax.swing.JFrame {
         jLabelNotificacion.setText("Valores actuales: Brillo:"+modelo.getBrillo()+
                 " Contraste:"+modelo.getContraste()+" Giro:"+modelo.getGiro()+
                 " Resolucion:"+modelo.getResolucion()+" Color:"+modelo.getColor());
+        jSliderBrillo.
     }
     
     
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * @return Retornan los valores actuales de las propiedades de la vista
+     */
     public int getBrillo(){
         return jSliderBrillo.getValue();
     }
@@ -365,6 +377,12 @@ public class VistaCP extends javax.swing.JFrame {
         return String.valueOf(jComboBoxResolucion.getSelectedItem());
     }
     
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * Tratamiento de los errores. Muestran un error si alguna delas propiedades7
+     * escogidas no esta soportada y los ocultan cuando se corrige la seleccion
+     */
     public void mostrarErrorColor(){
         jLabelErrorColor.setVisible(true);
     }

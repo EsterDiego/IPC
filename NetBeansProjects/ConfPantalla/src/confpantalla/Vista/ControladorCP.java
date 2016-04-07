@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 package confpantalla.Vista;
 
 import confpantalla.Modelo.ModeloCP;
 
 /**
- *
- * @author electra
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 public class ControladorCP {
     
@@ -30,6 +29,13 @@ public class ControladorCP {
         modelo = m;
     }
     
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * 
+     * Recogen de la vista la seleccion actual de los valores
+     * 
+     */
     public void establecerBrillo(){
         brillo = vista.getBrillo();
     }
@@ -45,6 +51,13 @@ public class ControladorCP {
     public void establecerResolucion(){
         resolucion = vista.getResolucion();
     }
+    
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * 
+     * Funcionalidad de los botones
+     */
     public void aplicar(){
         vista.ocultarErrores();
         actualizarModelo();
@@ -61,6 +74,14 @@ public class ControladorCP {
         System.exit(0);
     }
     
+    
+    
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * 
+     * Actualiza los valores del modelo con los nuevos obtenidos dela vista
+     */
     public void actualizarModelo(){
         establecerBrillo();
         modelo.setBrillo(brillo);
@@ -85,6 +106,13 @@ public class ControladorCP {
         
     }
     
+    
+    
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado 
+     * Clasifica el error seguna fecte a la seleccion de color o resolucion
+     */
     public void error(String e){
         if(e=="Resolucion"){
             vista.mostrarErrorResol();        

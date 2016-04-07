@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 package confpantalla.Modelo;
 
 
 
 /**
- *
- * @author electra
+ * @author Ester Diego
+ * @author Adrian Del Prado
  */
 
 public class ModeloCP {
@@ -34,6 +33,12 @@ public class ModeloCP {
     }
     
     
+    /**
+     *@author Ester Diego
+     *@author Adrian Del Prado
+     * 
+     * Retornan los valores almacenados actualmente
+     */
     public int getBrillo(){
         return brillo;
     }
@@ -49,6 +54,16 @@ public class ModeloCP {
     public String getResolucion(){
         return resolucion;
     }
+    
+    
+    
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * 
+     * Comprueban si las opciones estan soportadas
+     * 
+     */
     public boolean esResPermitida(String res){
         
         if((res=="R1024x768")||(res=="R800x600")){
@@ -68,6 +83,12 @@ public class ModeloCP {
         
     }
     
+    
+    /**
+     * @author Ester Diego
+     * @author Adrian Del Prado
+     * Actualiza los valores almacenados
+    */
     public void setBrillo(int b){
         brillo = b;
     }
