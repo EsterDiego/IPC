@@ -107,6 +107,17 @@ public class ControladorCP {
     }
     
     
+    public void actualizarTR(){
+        establecerBrillo();
+        modelo.setBrilloPro(brillo);
+        establecerContraste();
+        modelo.setContrPro(contraste);
+        modelo.setCambiado(true);
+        vista.actualizar();
+        
+    }
+    
+    
     
     /**
      * @author Ester Diego

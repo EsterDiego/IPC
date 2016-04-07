@@ -25,6 +25,9 @@ public class VistaCP extends javax.swing.JFrame {
         control = new ControladorCP(this,modelo);
         initComponents();
         ocultarErrores();
+        jButtonAplicar.setEnabled(false);
+        jLabelBrilloPro.setVisible(false);
+        jLabelContrPro.setVisible(false);
     }
 
     /**
@@ -42,6 +45,8 @@ public class VistaCP extends javax.swing.JFrame {
         jSliderContraste = new javax.swing.JSlider();
         jLabelBrillo = new javax.swing.JLabel();
         jLabelContraste = new javax.swing.JLabel();
+        jLabelBrilloPro = new javax.swing.JLabel();
+        jLabelContrPro = new javax.swing.JLabel();
         jPanelGiro = new javax.swing.JPanel();
         giroHor = new javax.swing.JRadioButton();
         giroVert = new javax.swing.JRadioButton();
@@ -65,11 +70,27 @@ public class VistaCP extends javax.swing.JFrame {
 
         jPanelBrilloContr.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jSliderBrillo.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderBrilloStateChanged(evt);
+            }
+        });
+
+        jSliderContraste.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderContrasteStateChanged(evt);
+            }
+        });
+
         jLabelBrillo.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         jLabelBrillo.setText("Brillo");
 
         jLabelContraste.setFont(new java.awt.Font("Liberation Sans", 0, 12)); // NOI18N
         jLabelContraste.setText("Contraste");
+
+        jLabelBrilloPro.setText("jLabel1");
+
+        jLabelContrPro.setText("jLabel2");
 
         javax.swing.GroupLayout jPanelBrilloContrLayout = new javax.swing.GroupLayout(jPanelBrilloContr);
         jPanelBrilloContr.setLayout(jPanelBrilloContrLayout);
@@ -82,22 +103,32 @@ public class VistaCP extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
-                        .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelBrillo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelBrilloPro))
+                    .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
                             .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelBrillo)
-                            .addComponent(jLabelContraste))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
+                            .addComponent(jLabelContraste)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelContrPro))))
                 .addContainerGap())
         );
         jPanelBrilloContrLayout.setVerticalGroup(
             jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBrilloContrLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabelBrillo)
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelBrillo)
+                    .addComponent(jLabelBrilloPro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSliderBrillo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(jLabelContraste)
+                .addGroup(jPanelBrilloContrLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelContraste)
+                    .addComponent(jLabelContrPro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSliderContraste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -325,6 +356,14 @@ public class VistaCP extends javax.swing.JFrame {
         control.aplicar();
     }//GEN-LAST:event_jButtonAplicarActionPerformed
 
+    private void jSliderBrilloStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderBrilloStateChanged
+        control.actualizarTR();
+    }//GEN-LAST:event_jSliderBrilloStateChanged
+
+    private void jSliderContrasteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderContrasteStateChanged
+        control.actualizarTR();
+    }//GEN-LAST:event_jSliderContrasteStateChanged
+
     /**
      * @author Ester Diego
      * @author Adrian Del Prado
@@ -338,7 +377,15 @@ public class VistaCP extends javax.swing.JFrame {
         jLabelNotificacion.setText("Valores actuales: Brillo:"+modelo.getBrillo()+
                 " Contraste:"+modelo.getContraste()+" Giro:"+modelo.getGiro()+
                 " Resolucion:"+modelo.getResolucion()+" Color:"+modelo.getColor());
-        jSliderBrillo.
+        jLabelContrPro.setText(String.valueOf(modelo.getContrPro()));
+        jLabelBrilloPro.setText(String.valueOf(modelo.getBrilloPro()));
+        if(modelo.getCambiado()){
+            jButtonAplicar.setEnabled(true);
+            jLabelBrilloPro.setVisible(true);
+            jLabelContrPro.setVisible(true);
+        }
+        
+        
     }
     
     
@@ -410,6 +457,8 @@ public class VistaCP extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxColores;
     private javax.swing.JComboBox jComboBoxResolucion;
     private javax.swing.JLabel jLabelBrillo;
+    private javax.swing.JLabel jLabelBrilloPro;
+    private javax.swing.JLabel jLabelContrPro;
     private javax.swing.JLabel jLabelContraste;
     private javax.swing.JLabel jLabelErrorColor;
     private javax.swing.JLabel jLabelErrorResolucion;

@@ -13,8 +13,6 @@ package confpantalla.Modelo;
 
 public class ModeloCP {
     
-    private static final String RGB = "RGB";
-    
     private enum Color{CMYK,RGB,HSB};
     private enum Resolucion{R1152x768,R1024x768,R896x600,R800x600};
     
@@ -23,10 +21,13 @@ public class ModeloCP {
     private int brillo;
     private int contraste;
     private int giro;
+    private int brilloPro;
+    private int contrastePro;
     private String color;
     private String resolucion;
     private Color colorS;
     private Resolucion resolS;
+    private boolean cambiado;
 
     
     public ModeloCP(){
@@ -54,7 +55,15 @@ public class ModeloCP {
     public String getResolucion(){
         return resolucion;
     }
-    
+    public int getBrilloPro(){
+        return brilloPro;
+    }
+    public int getContrPro(){
+        return contrastePro;
+    }
+    public boolean getCambiado(){
+        return cambiado;
+    }
     
     
     /**
@@ -104,5 +113,13 @@ public class ModeloCP {
     public void setResolucion(String r){
         resolucion = r;
     }
-    
+    public void setBrilloPro(int b){
+        brilloPro= b;
+    }
+    public void setContrPro(int c){
+        contrastePro = c;
+    }
+    public void setCambiado(boolean b){
+        cambiado = b;
+    }
 }
