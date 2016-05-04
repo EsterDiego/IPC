@@ -27,6 +27,10 @@ public class Modelo {
         this.setTotal(this.getTotal()+5);
         
     }
+    public void eliminaParticipante(int index){
+        lista.remove(index);
+        this.setTotal(this.getTotal()-5);
+    }
     public String getNombre(int posicion){
         return lista.get(posicion).getNombre()+" "+lista.get(posicion).getApellido();
     }

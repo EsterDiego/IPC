@@ -19,5 +19,8 @@ public class ControladorPago {
         this.modelo=modelo;
         
     }
+    public void volver(){
+        Main.getStateMachine().volverInicio();
+    }
     
 }

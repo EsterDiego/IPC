@@ -32,7 +32,7 @@ public class ControladorInscrip {
         }
     }
     public void anadir(){
-        if(compruebaNIF()&&compruebaFecha()){
+        if(compruebaNombre()&&compruebaApellido()&compruebaNIF()&&compruebaFecha()){
             int dia,mes,anio;
             dia=Integer.parseInt(vista.getDia());
             mes=Integer.parseInt(vista.getMes());
@@ -42,9 +42,29 @@ public class ControladorInscrip {
                     dia, mes, anio);
             Main.getStateMachine().volverInicio();
         }else{
+            vista.setErrorNombre(!compruebaNombre());
+            vista.setErrorApellido(!compruebaApellido());
             vista.setErrorNIF(!compruebaNIF());
             vista.setErrorFecha(!compruebaFecha());
+            
         }
+        
+    }
+    //Comprueba que el nombre no este vacio
+    private boolean compruebaNombre(){
+        if(vista.getNombre().isEmpty())
+            return false;
+        else
+            return true;
+                   
+        
+    }
+    private boolean compruebaApellido(){
+        if(vista.getApellido().isEmpty())
+            return false;
+        else
+            return true;
+                   
         
     }
     
@@ -58,7 +78,7 @@ public class ControladorInscrip {
         }catch (Exception e){
             return false;
         }
-        if (calculaLetra(dni)==vista.getNIF().charAt(8)){
+        if (calculaLetra(dni)==Character.toUpperCase(vista.getNIF().charAt(8))){
             return true;
         }else{
             return false;

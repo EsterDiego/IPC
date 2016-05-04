@@ -5,6 +5,7 @@
  */
 package ui;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JTextField;
 import modelo.Modelo;
 
@@ -16,25 +17,39 @@ public class InicioW extends javax.swing.JFrame {
 
     private ControladorInicio control;
     private Modelo modelo;
-    private ArrayList<JTextField> array=new ArrayList<JTextField>();
+    private ArrayList<JTextField> arrayTextFields=new ArrayList<JTextField>();
+    private ArrayList<JButton> arrayButtons=new ArrayList<JButton>();
     
     public InicioW(Modelo modelo) {
         initComponents();
         this.modelo = modelo;
         control = new ControladorInicio(this,modelo);
-        array.add(inscrito1);
-        array.add(inscrito2);
-        array.add(inscrito3);
-        array.add(inscrito4);
-        array.add(inscrito5);
+        //Añadimos los textfields y los botones a sus respectivos AL
+        arrayTextFields.add(inscrito1);
+        arrayTextFields.add(inscrito2);
+        arrayTextFields.add(inscrito3);
+        arrayTextFields.add(inscrito4);
+        arrayTextFields.add(inscrito5);
+        arrayButtons.add(jButtonEl1);
+        arrayButtons.add(jButtonEl2);
+        arrayButtons.add(jButtonEl3);
+        arrayButtons.add(jButtonEl4);
+        arrayButtons.add(jButtonEl5);
         actualiza();
         
     }
     public void actualiza(){
+        //Vacia los textfields y pone los botones como no visibles
+        for (int j=0;j<5;j++){
+            arrayTextFields.get(j).setText("");
+            arrayButtons.get(j).setVisible(false);
+        }
         for (int i=0;i<modelo.inscritos();i++){
-            array.get(i).setText(modelo.getNombre(i));
+            arrayTextFields.get(i).setText(modelo.getNombre(i));
+            arrayButtons.get(i).setVisible(true);
         }
         jTextField1.setText(String.valueOf(modelo.getTotal()));
+        buttonAñadir.setEnabled(true);
         if(modelo.inscritos()==5){
             buttonAñadir.setEnabled(false);
         }
@@ -49,6 +64,7 @@ public class InicioW extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         inscrito1 = new javax.swing.JTextField();
         inscrito2 = new javax.swing.JTextField();
@@ -61,6 +77,13 @@ public class InicioW extends javax.swing.JFrame {
         buttonCancelar = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButtonEl1 = new javax.swing.JButton();
+        jButtonEl2 = new javax.swing.JButton();
+        jButtonEl3 = new javax.swing.JButton();
+        jButtonEl4 = new javax.swing.JButton();
+        jButtonEl5 = new javax.swing.JButton();
+
+        jButton6.setText("jButton6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +124,41 @@ public class InicioW extends javax.swing.JFrame {
 
         jLabel2.setText("Total:");
 
+        jButtonEl1.setText("X");
+        jButtonEl1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEl1ActionPerformed(evt);
+            }
+        });
+
+        jButtonEl2.setText("X");
+        jButtonEl2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEl2ActionPerformed(evt);
+            }
+        });
+
+        jButtonEl3.setText("X");
+        jButtonEl3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEl3ActionPerformed(evt);
+            }
+        });
+
+        jButtonEl4.setText("X");
+        jButtonEl4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEl4ActionPerformed(evt);
+            }
+        });
+
+        jButtonEl5.setText("X");
+        jButtonEl5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEl5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -123,12 +181,27 @@ public class InicioW extends javax.swing.JFrame {
                                 .addComponent(buttonCancelar))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inscrito2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inscrito3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inscrito4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inscrito5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inscrito1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inscrito2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEl2))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inscrito3, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEl3))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inscrito4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEl4))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inscrito5, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEl5))
+                            .addComponent(jLabel1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(inscrito1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEl1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -141,20 +214,30 @@ public class InicioW extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(inscrito1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inscrito1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEl1))
                 .addGap(18, 18, 18)
-                .addComponent(inscrito2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inscrito2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEl2))
                 .addGap(18, 18, 18)
-                .addComponent(inscrito3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inscrito3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEl3))
                 .addGap(18, 18, 18)
-                .addComponent(inscrito4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inscrito4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEl4))
                 .addGap(18, 18, 18)
-                .addComponent(inscrito5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inscrito5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEl5))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonAñadir)
                     .addComponent(buttonPagar)
@@ -189,6 +272,26 @@ public class InicioW extends javax.swing.JFrame {
        control.cancelar();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void jButtonEl1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEl1ActionPerformed
+        control.eliminaParticipante(0);
+    }//GEN-LAST:event_jButtonEl1ActionPerformed
+
+    private void jButtonEl2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEl2ActionPerformed
+        control.eliminaParticipante(1);
+    }//GEN-LAST:event_jButtonEl2ActionPerformed
+
+    private void jButtonEl3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEl3ActionPerformed
+        control.eliminaParticipante(2);
+    }//GEN-LAST:event_jButtonEl3ActionPerformed
+
+    private void jButtonEl4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEl4ActionPerformed
+        control.eliminaParticipante(3);
+    }//GEN-LAST:event_jButtonEl4ActionPerformed
+
+    private void jButtonEl5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEl5ActionPerformed
+        control.eliminaParticipante(4);
+    }//GEN-LAST:event_jButtonEl5ActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -200,6 +303,12 @@ public class InicioW extends javax.swing.JFrame {
     private javax.swing.JTextField inscrito3;
     private javax.swing.JTextField inscrito4;
     private javax.swing.JTextField inscrito5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonEl1;
+    private javax.swing.JButton jButtonEl2;
+    private javax.swing.JButton jButtonEl3;
+    private javax.swing.JButton jButtonEl4;
+    private javax.swing.JButton jButtonEl5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
