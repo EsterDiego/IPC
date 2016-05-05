@@ -35,53 +35,29 @@ public class StateMachine {
     
     
     void close(){
-        //Igual podríamos quitar el setVisible, ¿por qué no borramos la ventana
-        //directamente??
-        currentState.setVisible(false);
         currentState.dispose();
-    }
-    
-    void back() {
-       currentState.setVisible(false); 
-       currentState.dispose();  
-       start();
     }
     
     void anadirParticipante(Modelo modelo){
         currentState.dispose();
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                currentState = new InscripW(modelo);
-                currentState.setLocationRelativeTo(null);
-                currentState.setVisible(true);
-            }
-        });
+        currentState = new InscripW(modelo);
+        currentState.setLocationRelativeTo(null);
+        currentState.setVisible(true);
     }
     
     void volverInicio(){
         currentState.dispose();
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                currentState = new InicioW(modelo);
-                currentState.setLocationRelativeTo(null);
-                currentState.setVisible(true);
-            }
-        });
-        
+        System.out.println("HOLA");
+        start();
     }
+    
     
     void ventanaDePago(Modelo modelo){
         currentState.dispose();
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                currentState = new PagoW(modelo);
-                currentState.setLocationRelativeTo(null);
-                currentState.setVisible(true);
-            }
-        });
+        currentState = new PagoW(modelo);
+        currentState.setLocationRelativeTo(null);
+        currentState.setVisible(true);
+       
         
     }
 }

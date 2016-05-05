@@ -52,18 +52,14 @@ public class ControladorInscrip {
     }
     //Comprueba que el nombre no este vacio
     private boolean compruebaNombre(){
-        if(vista.getNombre().isEmpty())
-            return false;
-        else
-            return true;
+        return(!vista.getNombre().isEmpty());
+      
                    
         
     }
     private boolean compruebaApellido(){
-        if(vista.getApellido().isEmpty())
-            return false;
-        else
-            return true;
+        return(!vista.getApellido().isEmpty());
+            
                    
         
     }
@@ -99,7 +95,7 @@ public class ControladorInscrip {
         //Comprueba que están dentro del rango razonable
         //TODO afinar esta comprobacion para evitar que se pueda
         //meter un 30 de febrero, por ejemplo
-        if (dia>31||dia<0||mes<0||mes>12||anio<1900||anio>2016){
+        if (dia>31||dia<1||mes<1||mes>12||anio<1900||anio>2016){
             return false;
         }else{
             return true;
