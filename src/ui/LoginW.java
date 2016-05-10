@@ -21,6 +21,7 @@ public class LoginW extends javax.swing.JFrame {
     public LoginW(Modelo modelo) {
         this.modelo=modelo;
         initComponents();
+        jLabel4.setVisible(false);
         control = new ControladorLogin(this,modelo);
     }
 
@@ -102,6 +103,11 @@ public class LoginW extends javax.swing.JFrame {
         );
 
         jLabel3.setText("<html><u>He olvidado mi contraseña</u></html>");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
 
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("Usuario o contraseña inválidos -->");
@@ -153,13 +159,21 @@ public class LoginW extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        String c = String.valueOf(jPasswordField1.getPassword());
+        control.iniciaSesion(jTextField1.getText(),c);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         control.volver();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        control.olvidarContraseña();
+    }//GEN-LAST:event_jLabel3MouseClicked
+
+    public void falloInicio(){
+        jLabel4.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

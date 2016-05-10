@@ -12,6 +12,10 @@ import modelo.Modelo;
  * @author Adrian
  */
 public class ControladorLogin {
+    private final String nombreUsuario = "usuario";
+    private final String contraseña = "1234";
+    
+    
     private LoginW vista;
     private Modelo modelo;
     
@@ -21,6 +25,19 @@ public class ControladorLogin {
     }
     public void volver(){
         Main.cambiaAInicio();
+    }
+    
+    public void iniciaSesion(String n, String c){
+       
+        if((n.equals(nombreUsuario))&&(c.equals(contraseña))){
+            Main.getStateMachineLogin().cambiaAPago();
+        }else{
+            vista.falloInicio();   
+        } 
+    }
+    
+    public void olvidarContraseña(){
+        Main.getStateMachineLogin().recuperacionPass();
     }
     
 }

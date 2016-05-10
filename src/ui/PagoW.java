@@ -21,7 +21,10 @@ public class PagoW extends javax.swing.JFrame {
         this.modelo=modelo;
         control=new ControladorPago(this,modelo);
         initComponents();
+        this.setVisible(true);
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

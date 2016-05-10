@@ -45,5 +45,13 @@ public class StateMachineLogin {
         Main.getStateMachine().start();
                 
     }
+    void cambiaAPago(){
+        currentState.dispose();
+        currentState = new PagoW(modelo);
+    }
+    
+    void recuperacionPass(){
+       new RecupContraseña();
+    }
     
 }

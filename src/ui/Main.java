@@ -1,13 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *@author Adrian de Prado
+ * @author Ester Diego 
+ * equipo 10
+ * 
+ *credenciales guardadas para login:
+ * User: usuario
+ * Pass: 1234
  */
 package ui;
 
 /**
  *
- * @author electra
+ *
  */
 public class Main {
     
@@ -25,13 +29,14 @@ public class Main {
         stateMachineLogin.close();
         stateMachine=new StateMachine();
     }
-     
+    
     public static StateMachine getStateMachine() {
         return stateMachine;
     }
     public static StateMachineLogin getStateMachineLogin() {
         return stateMachineLogin;
     }
+    
      
      
 }
