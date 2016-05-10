@@ -21,7 +21,7 @@ public class ControladorInicio {
     }
     
     public void pagar(){
-        Main.getStateMachine().ventanaDePago(modelo);
+        Main.cambiaALogin();
     }
     public void eliminaParticipante(int index){
         modelo.eliminaParticipante(index);

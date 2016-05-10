@@ -47,17 +47,14 @@ public class StateMachine {
     
     void volverInicio(){
         currentState.dispose();
-        System.out.println("HOLA");
         start();
     }
     
-    
     void ventanaDePago(Modelo modelo){
-        currentState.dispose();
-        currentState = new PagoW(modelo);
-        currentState.setLocationRelativeTo(null);
-        currentState.setVisible(true);
-       
-        
+        Main.cambiaALogin();
+    }
+    
+    public Modelo getModelo(){
+        return modelo;
     }
 }
